@@ -8,4 +8,7 @@ export class Movie {
     }
 }
 
+// named export
+// export {Movie};
+
 export default Movie;

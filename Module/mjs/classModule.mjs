@@ -1,4 +1,4 @@
-class Movie {
+export class Movie {
     constructor(title) {
         this.title = title;
     }
@@ -7,7 +7,5 @@ class Movie {
         console.log('This movie title is', this.title);
     }
 }
-
-export {Movie};
 
 export default Movie;

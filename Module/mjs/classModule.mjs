@@ -1,4 +1,4 @@
-class Movie {
+export class Movie {
     constructor(title) {
         this.title = title;
     }
@@ -8,6 +8,7 @@ class Movie {
     }
 }
 
-export {Movie};
+// named export
+// export {Movie};
 
 export default Movie;

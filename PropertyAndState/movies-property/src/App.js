@@ -10,8 +10,8 @@ const MovieItem = ({item}) => {
 const MovieList = ({movies}) => (
     <ul>
         {
-            movies.map( item => (
-                <MovieItem item={item} />
+            movies.map( (item, index) => (
+                <MovieItem item={item} key={index} />
             ))
         }
     </ul>    

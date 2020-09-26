@@ -38,6 +38,14 @@ class ChildEventClassComponent extends React.Component {
     }
 }
 
+function SiblingComponent({value}) {
+    return (
+        <>
+            {value}
+        </>
+    )    
+}
+
 function App() {
     let justVal = 0;
 
@@ -64,6 +72,9 @@ function App() {
                     <button onClick={() => setChildVal2(childVal2+1) }>+</button></li>
                 <li>Child Fn-Component Property Value, Event :
                     <ChildEventFnComponent value={childVal3} increaseFn={ () => setChildVal3(childVal3+1) }/>
+                </li>
+                <li>Sibling Component :
+                    <SiblingComponent value={childVal3} />
                 </li>
                 <li>Child Class-Component Property Value, Event :
                     <ChildEventClassComponent value={childVal4} increaseFn={ () => setChildVal4(childVal4+1) }/>

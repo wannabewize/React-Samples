@@ -1,50 +1,6 @@
 import React, { useState } from 'react';
+import {ChildFnComponent, ChildClassComponent, ChildEventFnComponent, ChildEventClassComponent, SiblingComponent } from "./ChildComponent";
 
-function ChildFnComponent({value}) {
-    return (
-        <>
-            {value}
-        </>
-    )
-}
-
-function ChildEventFnComponent({value, increaseFn}) {
-    return (
-        <>
-            {value}
-            <button onClick={() => increaseFn() }>+</button>
-        </>
-    )
-}
-
-class ChildClassComponent extends React.Component {
-    render() {
-        return (
-            <>
-                {this.props.value}
-            </>
-        )
-    }
-}
-
-class ChildEventClassComponent extends React.Component {
-    render() {
-        return (
-            <>
-                {this.props.value}
-                <button onClick={() => this.props.increaseFn() }>+</button>
-            </>
-        )
-    }
-}
-
-function SiblingComponent({value}) {
-    return (
-        <>
-            {value}
-        </>
-    )    
-}
 
 function App() {
     let localVal = 0;

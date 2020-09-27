@@ -9,7 +9,7 @@ class ClassApp extends React.Component {
             stateVal : 0
         }
     }
-    classPrivateVal = 0
+    classPrivateVal = 0;
     render() {
         return (
             <div>

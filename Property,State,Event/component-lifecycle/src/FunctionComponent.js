@@ -13,8 +13,7 @@ function ChildFunctionComponent({value1, value2}) {
 
     return (
         <>
-        <h3>Child Function Component</h3>
-        <p>count: {count}</p>
+        <h3>Child Function Component</h3>        
         <p>props.value1 : {value1}</p>
         <p>props.value2 : {value2}</p>
         </>

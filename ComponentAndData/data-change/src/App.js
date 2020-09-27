@@ -47,7 +47,7 @@ function SiblingComponent({value}) {
 }
 
 function App() {
-    let justVal = 0;
+    let localVal = 0;
 
     let [stateVal, setStateVal] = useState(0);
     let [childVal, setChildVal] = useState(0);
@@ -57,9 +57,10 @@ function App() {
 
     return (
         <div>
+            <h1>Function Component</h1>
             <ul>
                 {/* 컴포넌트에 선언한 변수를 사용하는 경우 - 값 변경, 반영 안됨. */}
-                <li>Just Variable : {justVal} <button onClick={() => justVal++ }>+</button></li>
+                <li>Function local Variable : {localVal} <button onClick={() => localVal++ }>+</button></li>
 
                 {/* State를 이용한 값 출력, 값 변경 반영 됨. */}
                 <li>State Value : {stateVal} <button onClick={() => setStateVal(stateVal+1) }>+</button></li>

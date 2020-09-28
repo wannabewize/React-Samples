@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {ThemeContext, LanguageContext} from './Constant';
+import {ThemeContext} from './Constant';
 
 function FunctionComponent() {
     return (

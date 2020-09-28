@@ -1,5 +1,5 @@
 import React from 'react';
-import {ThemeContext, LanguageContext} from './Constant';
+import {ThemeContext} from './Constant';
 
 class ClassComponent extends React.Component {
     render() {

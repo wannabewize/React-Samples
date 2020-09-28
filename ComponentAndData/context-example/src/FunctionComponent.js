@@ -21,7 +21,7 @@ function Toolbar() {
 function ThemedButton() {
     const theme = useContext(ThemeContext);
 
-    console.log('contextType:', theme);
+    console.log('ThemeContext:', theme);
     const darkTheme = {backgroundColor:'gray', color:'white'};
     const lightTheme = {backgroundColor:'white', color: 'black'};
     return (

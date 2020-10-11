@@ -1,6 +1,6 @@
 const initialState = {
     title: 'Redux - Store',
-    value: 0
+    value: 10
 };
 
 export function reducer(state = initialState, action) {

@@ -7,10 +7,15 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "firebase": "^7.24.0",
+<<<<<<< HEAD
     "lodash": "^4.17.20",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
+=======
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+>>>>>>> 770b2b7... Firebase 예제
     "react-scripts": "3.4.3"
   },
   "scripts": {

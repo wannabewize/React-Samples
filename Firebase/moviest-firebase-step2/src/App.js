@@ -1,6 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
-import firebase from "firebase";
+import firebase from 'firebase/app';
+import 'firebase/firebase-firestore';
+
 import {MovieListFnComponent} from "./MovieListFnComponent";
 import {MovieListClassComponent} from "./MovieListClassComponent";
 import {MovieDetailClassComponent} from "./MovieDetailClassComponent";

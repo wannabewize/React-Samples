@@ -1,41 +1,31 @@
 import React from "react";
+import { connect } from 'react-redux';
 import {withRouter} from "react-router-dom";
 import {MovieDetail} from "./MovieDetail";
 
 class MovieDetailComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { movie: null }
-    }
-
-    fetchMovieDetail = async () => {
-        const {movieId} = this.props.match.params;
-        console.log('movie detail for :', movieId);
-        const doc = await this.props.db.collection('movies').doc(movieId).get();
-
-        if ( doc.exists ) {
-            this.setState({movie: doc.data()});
-        }
-        else {
-            this.setState({movie: null});
-        } 
-    }
-
-    componentDidMount() {
-        this.fetchMovieDetail();
-    }
-
     render() {
         return (
             <div>
                 <h3>Movie Detail Class Component</h3>
                 {
-                    this.state.movie
-                        ? <MovieDetail movie={this.state.movie} />
+                    this.props.movie
+                        ? <MovieDetail movie={this.props.movie} />
                         : <h5>영화 정보가 없습니다.</h5>
                 }   
         </div>);
     }
 }
 
-export const MovieDetailClassComponent = withRouter(MovieDetailComponent);
+// withRouter를 connect보다 외부에 배치해서 props로 라우트 파라미터 전달
+const mapStateToProps = (state, props) => {
+    //console.log('MovieDetailComponent - state :', state, props);
+    const {movieId} = props.match.params;
+    // null 비교를 해야한다.
+    console.log('movie :', state.firestore.data.movies && state.firestore.data.movies[movieId])
+    return {
+        movie: state.firestore.data.movies && state.firestore.data.movies[movieId]
+    };
+}
+
+export const MovieDetailClassComponent = withRouter(connect(mapStateToProps)(MovieDetailComponent));

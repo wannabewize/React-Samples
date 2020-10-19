@@ -13,7 +13,7 @@ export function MovieDetailFnComponent({db}) {
 
     const movie = useSelector((state) => {
         let data = state.firestore.data.movies;  
-        console.log('movie:', data);
+        // console.log('movie:', data);
         return data && data[movieId];
     })
     

@@ -19,7 +19,7 @@ function App() {
             <Route path="/movies/:movieId" exact={true}>
                 <h1>Movie Detail by Firebase</h1>
                 <MovieDetailFnComponent />
-                {/* <MovieDetailClassComponent /> */} 
+                <MovieDetailClassComponent />
             </Route>
             <Route path="*">
                 <Redirect to="/movies" />

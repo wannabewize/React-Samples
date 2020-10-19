@@ -8,7 +8,7 @@ export function MovieListFnComponent({db}) {
         const snapshot = await db.collection('movies').get();
         let items = snapshot.docs.map( item => item.data() );
 
-        if ( JSON.stringify(items) !== JSON.stringify(items) ) {
+        if ( JSON.stringify(items) !== JSON.stringify(movies) ) {
             console.log('영화 정보 얻기, 영화 정보 상이 - 렌더링 필요. JSON 비교');
         }
         else {

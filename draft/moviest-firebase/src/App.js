@@ -14,12 +14,12 @@ function App() {
             <Route path="/movies" exact={true}>
                 <h1>Moviest by Firebase</h1>
                 <MovieListFnComponent />
-                {/* <MovieListClassComponent /> */}
+                <MovieListClassComponent />
             </Route>
             <Route path="/movies/:movieId" exact={true}>
                 <h1>Movie Detail by Firebase</h1>
-                {/* <MovieDetailFnComponent />
-                <MovieDetailClassComponent /> */}
+                <MovieDetailFnComponent />
+                {/* <MovieDetailClassComponent /> */} 
             </Route>
             <Route path="*">
                 <Redirect to="/movies" />

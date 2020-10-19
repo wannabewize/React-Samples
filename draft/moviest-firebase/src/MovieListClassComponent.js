@@ -1,33 +1,28 @@
 import React from "react";
+import { connect } from "react-redux";
+import { MovieList } from "./MovieList";
 
-export class MovieListClassComponent extends React.Component {
+class MovieListComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { movies: [] }
-    }
-
-    fetchMovies = async () => {
-        const snapshot = await this.props.db.collection('movies').get();
-        let items = snapshot.docs.map( item => {
-            return {...item.data(), id: item.id};
-        } );
-        this.setState({movies: items});
-        console.log('fetched movies :', items);        
-    }
-
-    componentDidMount() {
-        this.fetchMovies();
     }
 
     render() {
         return (
             <div>
                 <h3>MovieList Class Component</h3>
-                <ul>
-                { this.state.movies.map( item => (
-                    <li key={item.id}><a href={`/movies/${item.id}`}>{item.title}</a></li>
-                ))}
-                </ul>
+                { this.props.movies
+                    ? <MovieList movies={this.props.movies} />
+                    : <h5>영화 목록이 없습니다.</h5>
+                }
         </div>);
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        movies: state.firestore.ordered.movies
+    };
+}
+
+export const MovieListClassComponent = connect(mapStateToProps)(MovieListComponent)

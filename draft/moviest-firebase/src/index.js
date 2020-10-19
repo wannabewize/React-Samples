@@ -14,7 +14,6 @@ import { createFirestoreInstance, firestoreReducer } from 'redux-firestore'
 
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import { reducer } from "./Reducer";
 import { firebaseConfig } from "./firebaseConfig";
 
 // Initialize Firebase
@@ -34,13 +33,9 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-const rrfConfig = {
-    enableLogging: true
-};
-
 const rrfProps = {
     firebase,
-    config: rrfConfig,
+    config: { enableLogging: true },
     dispatch: store.dispatch,
     createFirestoreInstance
 }

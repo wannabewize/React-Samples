@@ -1,24 +1,29 @@
-import {FETCH_MOVIES} from "./Actions";
+import {REQUEST_MOVIES, RECEIVE_MOVIES} from "./Actions";
+
+import firebase from 'firebase/app';
+import 'firebase/firebase-firestore';
+import { firebaseConfig } from "./firebaseConfig";
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const firestore = firebase.firestore();
 
 const initialState = {
     title: 'Redux - Store',
-    movies: null
+    loading: false,
+    firestore,
+    movies: []
 };
-
-// const fetchMovies = async (db) => {
-//     const snapshot = await db.collection('movies').get();
-//     let items = snapshot.docs.map( item => {
-//         return {...item.data(), id: item.id};
-//     } );
-//     return items;
-// }
+console.log('initial state ', initialState);
 
 export async function reducer(state = initialState, action) {
-    switch (action.type) {
-        case FETCH_MOVIES:
-            // const movies = await fetchMovies(state.db);
-            // console.log('fetch movies');
-            return { ...state, movies: action.movies };
+    switch (action.type) {        
+        case REQUEST_MOVIES:
+            return {...state, loading: true};
+        case RECEIVE_MOVIES:
+            const newState = {...state, movies: action.movies, loading: false};
+            console.log('new state :', newState);
+            return newState;
         default:
             return state
     }

@@ -1,14 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useFirestoreConnect } from "react-redux-firebase";
 import { MovieList } from "./MovieList";
 
 export function MovieListFnComponent() {
-    useFirestoreConnect([{
-        collection: 'movies',
-    }]);
-
-    const movies = useSelector((state) => state.firestore.ordered.movies);
+    const movies = useSelector((state) => state.movies);
 
     return (
         <div>
@@ -19,4 +14,3 @@ export function MovieListFnComponent() {
         </div>
     );
 }
-

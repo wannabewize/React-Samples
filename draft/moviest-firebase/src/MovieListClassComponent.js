@@ -1,10 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import { MovieList } from "./MovieList";
+import { fetchMovies } from "./Actions";
 
 class MovieListComponent extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        console.log('fetching movies', this.props);
+        fetchMovies(this.props.dispatch);
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log('componentDidUpdate');
     }
 
     render() {
@@ -20,8 +30,8 @@ class MovieListComponent extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        movies: state.firestore.ordered.movies
+    return {        
+        movies: state.movies
     };
 }
 

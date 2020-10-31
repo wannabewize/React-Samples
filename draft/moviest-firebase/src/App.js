@@ -6,6 +6,8 @@ import {MovieListClassComponent} from "./MovieListClassComponent";
 import {MovieDetailClassComponent} from "./MovieDetailClassComponent";
 import {MovieDetailFnComponent} from "./MovieDetailFnComponent";
 
+
+
 function App() {
     console.log('App Rendering!');
     return (
@@ -18,7 +20,7 @@ function App() {
             </Route>
             <Route path="/movies/:movieId" exact={true}>
                 <h1>Movie Detail by Firebase</h1>
-                <MovieDetailFnComponent />
+                {/* <MovieDetailFnComponent /> */}
                 {/* <MovieDetailClassComponent /> */} 
             </Route>
             <Route path="*">

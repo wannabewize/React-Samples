@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { connect, useSelector, useDispatch } from "react-redux";
-import { increaseValue, increaseValueAsync } from "./Actions";
+import { useSelector, useDispatch } from "react-redux";
+import { increaseValueAsync } from "./Actions";
 
 function FnComponent2() {
     const [value, setValue] = useState(0);

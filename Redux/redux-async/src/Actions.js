@@ -1,4 +1,4 @@
-export function increaseValue(amount) {
+function increaseValue(amount) {
     return {
         type: 'INCREASE',
         amount

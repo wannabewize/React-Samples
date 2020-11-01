@@ -8,5 +8,5 @@ export function increaseValue(amount) {
 export function increaseValueAsync(dispatch, amount) {
     setTimeout( () => {
         dispatch( increaseValue(amount) )
-    }, 3000);
+    }, 2000);
 }

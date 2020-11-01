@@ -13,26 +13,25 @@ class ClassComponent extends React.Component {
         console.log("increase state valua asynchronously");
         setTimeout( () => {
             this.setState({stateValue: this.state.stateValue + 1})
-        }, 1000);
+        }, 2000);
     }
 
     handleIncreaseReduxAsync() {
         increaseValueAsync(this.props.dispatch, 1);
     }
 
-    render() {        
-        console.log('prosp :', this.props);
+    render() {                
         return (
             <div>
-                <h3>React - Redux Async Class Component</h3>                
+                <h3>Redux Async Task - Class Component</h3>                
                 <ul>
-                    <li>State - Value : {this.state.stateValue}</li>
-                    <li>Property - Value : {this.props.value}</li>
+                    <li>Local Value : {this.state.stateValue}</li>
+                    <li>Global Value ( in Store ) : {this.props.globalValue}</li>
                     <li>
-                        <button onClick={this.handleIncreaseStateAsync}>Increase State Async!!</button>
+                        <button onClick={this.handleIncreaseStateAsync}>Increase Local Value Async!!</button>
                     </li>
                     <li>
-                        <button onClick={this.handleIncreaseReduxAsync}>Increase Props Async!! </button>
+                        <button onClick={this.handleIncreaseReduxAsync}>Increase Global Value Async!! </button>
                     </li>
                 </ul>                
             </div>            
@@ -42,7 +41,7 @@ class ClassComponent extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        value: state.value
+        globalValue: state.value
     }
 }
 

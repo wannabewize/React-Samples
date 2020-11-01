@@ -24,7 +24,7 @@ export const requestMovies = (dispatch) => {
 
     // TODO : 요청 완료 전 중복 요청을 막기 위한 장치 필요 - FETCH_MOVIES_STARTED 필요
     firebase.firestore().collection('movies').get()
-    .then( snapshot => {
+    .then( snapshot => {        
         let items = snapshot.docs.map( item => {
             return {...item.data(), id: item.id};
         } );

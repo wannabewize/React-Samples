@@ -5,12 +5,7 @@ import {MovieDetail} from "./MovieDetail";
 import { requestMovieDetail } from "./Actions";
 
 class MovieDetailComponent extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     componentDidMount() {
-        console.log('componentDidMount :', this.props.movie );
-
         const movie = this.props.movieDetails[this.props.movieId];
         if ( !movie ) {
             requestMovieDetail(this.props.dispatch, this.props.movieId);
@@ -25,7 +20,7 @@ class MovieDetailComponent extends React.Component {
                     movie
                         ? <MovieDetail movie={movie} />
                         : <h5>영화 정보가 없습니다.</h5>
-                }   
+                }
         </div>);
     }
 }

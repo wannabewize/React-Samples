@@ -5,11 +5,20 @@ import {MovieListFnComponent} from "./MovieListFnComponent";
 import MovieListClassComponent from "./MovieListClassComponent";
 import {MovieDetailClassComponent} from "./MovieDetailClassComponent";
 import {MovieDetailFnComponent} from "./MovieDetailFnComponent";
+import LoginComponent from "./LoginComponent";
+import UserComponent from "./UserComponent";
 
 function App() {
     return (
         <BrowserRouter>
         <h1>Moviest by Firebase</h1>
+        <nav>
+            <ul>
+                <li><Link to="/">Home</Link></li>
+            </ul>
+        </nav>
+        
+        <UserComponent />
         <Switch>
             <Route path="/movies" exact={true}>
                 <MovieListFnComponent />
@@ -18,6 +27,9 @@ function App() {
             <Route path="/movies/:movieId" exact={true}>
                 <MovieDetailFnComponent />
                 <MovieDetailClassComponent /> 
+            </Route>
+            <Route path="/login" exact={true}>
+                <LoginComponent />
             </Route>
             <Route path="*">
                 <Redirect to="/movies" />

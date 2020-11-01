@@ -4,7 +4,7 @@ import { MovieList } from "./MovieList";
 
 export function MovieListFnComponent() {
     // Store에서 movies 목록
-    const movies = useSelector((state) => state.movies);
+    const movies = useSelector((state) => state.movie.movies);
 
     return (
         <div>

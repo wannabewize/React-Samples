@@ -10,7 +10,7 @@ export function MovieDetailFnComponent({db}) {
     const dispatch = useDispatch();
 
     const movie = useSelector((state) => {
-        return state.movieDetails[movieId];
+        return state.movie.movieDetails[movieId];
     });
 
     useEffect( () => {

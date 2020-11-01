@@ -8,22 +8,27 @@ import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
 import { firebaseConfig } from "./firebaseConfig";
 
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { reducer } from "./Reducer";
-
-import { requestMovies } from "./Actions";
-
+import { authReducers } from "./AuthReducer";
+import { requestMovies, authChanged } from "./Actions";
 
 // 파이어베이스 초기화
 firebase.initializeApp(firebaseConfig);
 
+const rootReducers = combineReducers({movie: reducer, auth: authReducers});
+
 // 스토어 생성
 const store = createStore(
-    reducer,
+    rootReducers,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
+const unregisterAuthObserver = firebase.auth().onAuthStateChanged( (user) => {
+    console.log('user auth state changed:', user);
+    authChanged(store.dispatch, user);
+});
 
 ReactDOM.render(
     <React.StrictMode>

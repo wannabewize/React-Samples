@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 
 export const FETCH_MOVIES = "FETCH_MOVIES";
 export const FETCH_MOVIE_DETAIL = "FETCH_MOVIE_DETAIL";
+export const AUTH_STATE_CHANGED = "AUTH_STATE_CHANGED";
 
 function fetchMovies(movies) {
     return {
@@ -57,3 +58,11 @@ export const requestMovieDetail = (dispatch, movieId) => {
         console.error('Error :', error);
     });    
 } 
+
+export const authChanged = (dispatch, user) => {
+    dispatch( { type: AUTH_STATE_CHANGED, user } )
+}
+
+export const logout = () => {
+    firebase.auth().signOut();
+}

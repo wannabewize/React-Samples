@@ -35,7 +35,7 @@ const mapStateToProps = (state, props) => {
     const {movieId} = props.match.params;
     return {
         movieId,
-        movieDetails : state.movieDetails
+        movieDetails : state.movie.movieDetails
     };
 }
 

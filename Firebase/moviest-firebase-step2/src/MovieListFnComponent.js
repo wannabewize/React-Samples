@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from "react-router-dom";
 import _ from 'lodash';
 
 export function MovieListFnComponent({db}) {
@@ -42,7 +43,7 @@ export function MovieListFnComponent({db}) {
             <h3>MovieList Function Component</h3>
             <ul>
             { movies.map( item => (
-                <li key={item.id}><a href={`/movies/${item.id}`}>{item.title}</a></li>
+                <li key={item.id}><Link to={`/movies/${item.id}`}>{item.title}</Link></li>
             ))}
             </ul>
         </div>

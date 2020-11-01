@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export class MovieListClassComponent extends React.Component {
     constructor(props) {
@@ -25,7 +26,7 @@ export class MovieListClassComponent extends React.Component {
                 <h3>MovieList Class Component</h3>
                 <ul>
                 { this.state.movies.map( item => (
-                    <li key={item.id}><a href={`/movies/${item.id}`}>{item.title}</a></li>
+                    <li key={item.id}><Link to={`/movies/${item.id}`}>{item.title}</Link></li>
                 ))}
                 </ul>
         </div>);

@@ -5,7 +5,7 @@ import { increaseValue, increaseValueAsync } from "./Actions";
 function FnComponent({ globalValue, dispatch }) {
     let [value, setValue] = useState(0);
 
-    const increseLocalValue = () => {
+    const increaseLocalValue = () => {
         setTimeout( () => {
             setValue(value+1);
         }, 2000);
@@ -20,7 +20,7 @@ function FnComponent({ globalValue, dispatch }) {
                 <li>Local Value : {value}</li>
                 <li>Global Value ( in Store ) : {globalValue}</li>                
                 <li>
-                    <button onClick={increseLocalValue}>Increase Local Value Async!!</button>
+                    <button onClick={increaseLocalValue}>Increase Local Value Async!!</button>
                 </li>
                 <li>
                     <button onClick={increaseGlobalValue}>Increase Global Value Async!! </button>

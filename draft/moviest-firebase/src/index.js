@@ -6,48 +6,36 @@ import * as serviceWorker from './serviceWorker';
 
 import firebase from 'firebase/app';
 import 'firebase/firebase-firestore';
-import {
-    ReactReduxFirebaseProvider,
-    firebaseReducer
-} from 'react-redux-firebase';
-import { createFirestoreInstance, firestoreReducer } from 'redux-firestore'
-
-import { createStore, combineReducers } from "redux";
-import { Provider } from "react-redux";
 import { firebaseConfig } from "./firebaseConfig";
 
-// Initialize Firebase
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { reducer } from "./Reducer";
+
+import { requestMovies } from "./Actions";
+
+
+// 파이어베이스 초기화
 firebase.initializeApp(firebaseConfig);
-firebase.firestore();
 
-const initialState = {};
-
-const rootReducer = combineReducers({
-    firebase: firebaseReducer,
-    firestore: firestoreReducer
-});
-
+// 스토어 생성
 const store = createStore(
-    rootReducer,
-    initialState,
+    reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-const rrfProps = {
-    firebase,
-    config: { enableLogging: true },
-    dispatch: store.dispatch,
-    createFirestoreInstance
-}
 
 ReactDOM.render(
-    <Provider store={store}>
-        <ReactReduxFirebaseProvider {...rrfProps}  >
+    <React.StrictMode>
+        <Provider store={store}>
             <App />
-        </ReactReduxFirebaseProvider>
-    </Provider>,
+        </Provider>
+    </React.StrictMode>,
     document.getElementById('root')
 );
+
+// 초기 영화 목록 얻기
+requestMovies(store.dispatch);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -1,24 +1,20 @@
-import {FETCH_MOVIES} from "./Actions";
+import {FETCH_MOVIES, FETCH_MOVIE_DETAIL} from "./Actions";
 
 const initialState = {
     title: 'Redux - Store',
-    movies: null
+    movies: null,
+    movieDetails: {}
 };
 
-// const fetchMovies = async (db) => {
-//     const snapshot = await db.collection('movies').get();
-//     let items = snapshot.docs.map( item => {
-//         return {...item.data(), id: item.id};
-//     } );
-//     return items;
-// }
-
-export async function reducer(state = initialState, action) {
+export function reducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_MOVIES:
-            // const movies = await fetchMovies(state.db);
-            // console.log('fetch movies');
             return { ...state, movies: action.movies };
+        case FETCH_MOVIE_DETAIL:
+            let movieId = action.movieId;
+            let movieDetails = { ...state.movieDetails, [movieId]:action.movie};
+            console.log('Reducer - FETCH_MOVIE_DETAIL:', movieDetails)
+            return {...state, movieDetails};
         default:
             return state
     }

@@ -1,20 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useFirestoreConnect } from "react-redux-firebase";
+import { useSelector, useDispatch } from 'react-redux';
 import { MovieList } from "./MovieList";
 
 export function MovieListFnComponent() {
-    useFirestoreConnect([{
-        collection: 'movies',
-    }]);
-
-    const movies = useSelector((state) => state.firestore.ordered.movies);
+    // Store에서 movies 목록
+    const movies = useSelector((state) => state.movies);
 
     return (
         <div>
             <h3>MovieList Function Component</h3>
             {
-                movies ? <MovieList movies={movies}/> : <h5> Movies non-exist</h5>
+                movies ? <MovieList movies={movies}/> : <h5>영화 목록이 없습니다.</h5>
             }
         </div>
     );

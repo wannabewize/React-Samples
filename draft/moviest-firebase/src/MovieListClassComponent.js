@@ -21,8 +21,8 @@ class MovieListComponent extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        movies: state.firestore.ordered.movies
+        movies: state.movies
     };
 }
 
-export const MovieListClassComponent = connect(mapStateToProps)(MovieListComponent)
+export default connect(mapStateToProps)(MovieListComponent)

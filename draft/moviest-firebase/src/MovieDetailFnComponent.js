@@ -1,21 +1,24 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { useFirestoreConnect } from "react-redux-firebase";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {MovieDetail} from './MovieDetail';
 import {useParams} from "react-router-dom";
+import {requestMovieDetail} from "./Actions";
 
 export function MovieDetailFnComponent({db}) {
     const {movieId} = useParams();
-    useFirestoreConnect([{
-        collection: 'movies',
-        doc: movieId
-    }]);
+
+    const dispatch = useDispatch();
 
     const movie = useSelector((state) => {
-        let data = state.firestore.data.movies;  
-        // console.log('movie:', data);
-        return data && data[movieId];
-    })
+        return state.movieDetails[movieId];
+    });
+
+    useEffect( () => {
+        console.log('useEffect works');
+        if ( !movie ) {            
+            requestMovieDetail(dispatch, movieId);
+        }
+    }, [])
     
     console.log('Movie Detail Function Component rendering!');
     return (

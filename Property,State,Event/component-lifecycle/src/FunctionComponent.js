@@ -1,15 +1,24 @@
 import React, {useState, useEffect} from 'react';
 
 function ChildFunctionComponent({value1, value2}) {
+    // mount, unmount, property, state 변경시마다 동작
     useEffect(() => {
-        // value1이 변경될 때만 동작
-        console.log('Child Function Component - value1 changed');
-    }, [value1]);
-
-    useEffect(() => {
-        // mount, unmount, property, state 변경시마다 동작
         console.log('Child Function Component useEffect works');
     });
+
+    // componentDidMount에 해당
+    useEffect(()=>{
+        console.log('Child Function Component useEffect([]) works');
+        // componentWillUnmount에 해당
+        return () => {
+            console.log('Child Function Component useEffect([]) works. unmount')
+        }        
+    }, []);
+
+    // Property - value2이 변경될 때만 동작
+    useEffect(() => {
+        console.log('Child Function Component useEffect([value2]) works');
+    }, [value2]);
 
     return (
         <>
@@ -25,9 +34,15 @@ function FunctionComponent() {
     let [value2, setValue2] = useState(0);
     let [mount, setMount] = useState(true);
 
+    // 모든 변경에 동작
     useEffect(() => {
         console.log('Function Component useEffect works');
     });
+
+    // State - value1이 변경될 때만 동작
+    useEffect(() => {
+        console.log('Function Component useEffect([value1]) works');
+    }, [value1]);    
 
     return (
         <div>

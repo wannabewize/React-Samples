@@ -11,6 +11,13 @@ function ChildFunctionComponent({value1, value2}) {
         console.log('Child Function Component useEffect works');
     });
 
+    useEffect(() => {        
+        console.log('Child Function Component did Mount');
+        return () => {
+          console.log('Child Function Component will Unmount')
+        }
+    }, []);    
+
     return (
         <>
         <h3>Child Function Component</h3>        

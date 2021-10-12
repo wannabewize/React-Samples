@@ -6,6 +6,7 @@ function ChildFunctionComponent({value1, value2}) {
         console.log('Child Function Component useEffect works');
     });
 
+<<<<<<< HEAD:Property,State,Event/component-lifecycle/src/FunctionComponent.js
     // componentDidMount에 해당
     useEffect(()=>{
         console.log('Child Function Component useEffect([]) works');
@@ -19,6 +20,14 @@ function ChildFunctionComponent({value1, value2}) {
     useEffect(() => {
         console.log('Child Function Component useEffect([value2]) works');
     }, [value2]);
+=======
+    useEffect(() => {        
+        console.log('Child Function Component did Mount');
+        return () => {
+          console.log('Child Function Component will Unmount')
+        }
+    }, []);    
+>>>>>>> 928d0e446075e45f73a29f522f69e01780581e05:ComponentAndData/component-lifecycle/src/FunctionComponent.js
 
     return (
         <>

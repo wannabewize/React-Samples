@@ -1,20 +1,24 @@
 import React, {useState, useEffect} from 'react';
+import { getFirestore } from "firebase/firestore"
+import { doc, collection, getDocs, getDoc } from "firebase/firestore";
 import {MovieDetail} from './MovieDetail';
 import {useParams} from "react-router-dom";
 import _ from 'lodash';
 
-export function MovieDetailFnComponent({db}) {
+export function MovieDetailFnComponent() {
     let [movie, setMovie] = useState([]);
     const {movieId} = useParams();
+    const db = getFirestore();
 
     const fetchMovieDetail = async () => {
-        console.log('movie detail for :', movieId);
-        const doc = await db.collection('movies').doc(movieId).get();
+        console.log('movie detail for :', movieId);        
+        const docRef = doc(db, "movies", movieId);
+        const movieDoc = await getDoc(docRef);
 
-        console.log('doc :', doc);
+        console.log('doc :', movieDoc);
 
-        if ( doc.exists ) {
-            setMovie(doc.data());
+        if ( movieDoc.exists ) {
+            setMovie(movieDoc.data());
         }
         else {
             setMovie(null);

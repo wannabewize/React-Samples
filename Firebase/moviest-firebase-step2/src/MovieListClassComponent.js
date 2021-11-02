@@ -1,14 +1,17 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import { getFirestore } from "firebase/firestore"
+import { doc, collection, getDocs } from "firebase/firestore";
 
 export class MovieListClassComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = { movies: [] }
+        this.db = getFirestore();
     }
 
     fetchMovies = async () => {
-        const snapshot = await this.props.db.collection('movies').get();
+        const snapshot = await getDocs(collection(this.db, "movies"));
         let items = snapshot.docs.map( item => {
             return {...item.data(), id: item.id};
         } );

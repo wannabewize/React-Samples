@@ -1,4 +1,6 @@
 import React from "react";
+import { getFirestore } from "firebase/firestore"
+import { doc, getDoc } from "firebase/firestore";
 import {withRouter} from "react-router-dom";
 import {MovieDetail} from "./MovieDetail";
 
@@ -6,15 +8,17 @@ class MovieDetailComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = { movie: null }
+        this.db = getFirestore();
     }
 
     fetchMovieDetail = async () => {
         const {movieId} = this.props.match.params;
         console.log('movie detail for :', movieId);
-        const doc = await this.props.db.collection('movies').doc(movieId).get();
-
-        if ( doc.exists ) {
-            this.setState({movie: doc.data()});
+        const docRef = doc(this.db, "movies", movieId);
+        const movieDoc = await getDoc(docRef);
+        
+        if ( movieDoc.exists ) {
+            this.setState({movie: movieDoc.data()});
         }
         else {
             this.setState({movie: null});

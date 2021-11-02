@@ -1,12 +1,16 @@
 import React, {useState, useEffect} from 'react';
+import { getFirestore } from "firebase/firestore"
+import { collection, query, where, getDocs } from "firebase/firestore";
+
 import {Link} from "react-router-dom";
 import _ from 'lodash';
 
-export function MovieListFnComponent({db}) {
+export function MovieListFnComponent() {
     let [movies, setMovies] = useState([]);
+    const db = getFirestore();
 
     const fetchMovies1 = async () => {
-        const snapshot = await db.collection('movies').get();
+        const snapshot = await getDocs(collection(db, "movies"));
         let items = snapshot.docs.map( item => item.data() );
 
         if ( JSON.stringify(items) !== JSON.stringify(items) ) {
@@ -25,7 +29,7 @@ export function MovieListFnComponent({db}) {
     }   
 
     const fetchMovies2 = async () => {
-        const snapshot = await db.collection('movies').get();
+        const snapshot = await getDocs(collection(db, "movies"));
         let items = snapshot.docs.map( item => {
             return {...item.data(), id: item.id};
         } );

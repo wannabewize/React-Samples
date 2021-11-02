@@ -1,23 +1,22 @@
 import React from 'react';
-import firebase from 'firebase/app';
-import 'firebase/firebase-firestore';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 import {MovieListFnComponent} from "./MovieListFnComponent";
 import {MovieListClassComponent} from "./MovieListClassComponent";
 import {firebaseConfig} from "./firebaseConfig";
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 function App() {
     console.log('App Rendering!');
     return (
         <div>
             <h1>Moviest by Firebase</h1>
-            <MovieListFnComponent db={db} />
-            <MovieListClassComponent db={db} />
+            <MovieListFnComponent />
+            <MovieListClassComponent />
         </div>
     );
 }

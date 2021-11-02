@@ -1,13 +1,17 @@
 import React, {useState, useEffect} from 'react';
+import { getFirestore } from "firebase/firestore"
+import { collection, query, where, getDocs } from "firebase/firestore";
 import _ from 'lodash';
 
-export function MovieListFnComponent({db}) {
+export function MovieListFnComponent() {
     let [movies, setMovies] = useState([]);
+    const db = getFirestore();
 
     const fetchMovies1 = async () => {
-        const snapshot = await db.collection('movies').get();
+        const snapshot = await getDocs(collection(db, "movies"));  
         let items = snapshot.docs.map( item => item.data() );
 
+        // 기존 영화 정보와 동일한지 비교 - JSON으로
         if ( JSON.stringify(items) !== JSON.stringify(movies) ) {
             console.log('영화 정보 얻기, 영화 정보 상이 - 렌더링 필요. JSON 비교');
         }
@@ -15,6 +19,7 @@ export function MovieListFnComponent({db}) {
             console.log('영화 정보 얻기. 영화 정보 동일. 렌더링 불필요');
         }
 
+        // 기존 영화 정보와 동일한지 비교 - lodash
         if (! _.isEqual(items, movies) ) {
             console.log('영화 정보 얻기, 영화 정보 상이 - 렌더링 필요. lodash.isEqual :', movies);        
             setMovies(items);
@@ -24,12 +29,12 @@ export function MovieListFnComponent({db}) {
     }   
 
     const fetchMovies2 = async () => {
-        const snapshot = await db.collection('movies').get();
+        const snapshot = await getDocs(collection(db, "movies"));
         let items = snapshot.docs.map( item => {
             return {...item.data(), id: item.id};
         } );
         setMovies(items);
-    }        
+    }
 
     useEffect( () => {
         console.log('useEffect works');

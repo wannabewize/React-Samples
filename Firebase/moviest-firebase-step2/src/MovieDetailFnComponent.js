@@ -17,7 +17,7 @@ export function MovieDetailFnComponent() {
 
         console.log('doc :', movieDoc);
 
-        if ( movieDoc.exists ) {
+        if ( movieDoc.exists() ) {
             setMovie(movieDoc.data());
         }
         else {

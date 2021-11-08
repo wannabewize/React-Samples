@@ -8,6 +8,10 @@ function FnComponent2() {
     const globalValue = useSelector( state => { return state.value; })
     const dispatch = useDispatch();
 
+    const handleIncreaseStateSync = () => {
+        setValue(value+1);
+    }    
+
     const increaseLocalValue = () => {
         setTimeout( () => {
             setValue(value+1);
@@ -23,7 +27,10 @@ function FnComponent2() {
             <h3>Redux Async Task - Function Component - 2</h3>
             <ul>
                 <li>Local Value : {value}</li>
-                <li>Global Value ( in Store ) : {globalValue}</li>                
+                <li>Global Value ( in Store ) : {globalValue}</li>      
+                <li>
+                    <button onClick={handleIncreaseStateSync}>Increase Local Value Sync!!</button>
+                </li>                             
                 <li>
                     <button onClick={increaseLocalValue}>Increase Local Value Async!!</button>
                 </li>

@@ -5,6 +5,10 @@ import { increaseValue, increaseValueAsync } from "./Actions";
 function FnComponent({ globalValue, dispatch }) {
     let [value, setValue] = useState(0);
 
+    const handleIncreaseStateSync = () => {
+        setValue(value+1);
+    }
+
     const increaseLocalValue = () => {
         setTimeout( () => {
             setValue(value+1);
@@ -18,7 +22,10 @@ function FnComponent({ globalValue, dispatch }) {
             <h3>Redux Async Task - Function Component - 1</h3>
             <ul>
                 <li>Local Value : {value}</li>
-                <li>Global Value ( in Store ) : {globalValue}</li>                
+                <li>Global Value ( in Store ) : {globalValue}</li>     
+                <li>
+                    <button onClick={handleIncreaseStateSync}>Increase Local Value Sync!!</button>
+                </li>                           
                 <li>
                     <button onClick={increaseLocalValue}>Increase Local Value Async!!</button>
                 </li>
@@ -36,4 +43,5 @@ const mapStateToProps = (state) => {
     }
 }
 
+// connect 함수는 dispatch를 프로퍼티로 전달
 export default connect(mapStateToProps)(FnComponent);

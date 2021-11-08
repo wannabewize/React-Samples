@@ -4,7 +4,7 @@ import {MovieDetail} from './MovieDetail';
 import {useParams} from "react-router-dom";
 import {requestMovieDetail} from "./Actions";
 
-export function MovieDetailFnComponent({db}) {
+export function MovieDetailFnComponent() {
     const {movieId} = useParams();
 
     const dispatch = useDispatch();
@@ -15,9 +15,7 @@ export function MovieDetailFnComponent({db}) {
 
     useEffect( () => {
         console.log('useEffect works');
-        if ( !movie ) {            
-            requestMovieDetail(dispatch, movieId);
-        }
+        requestMovieDetail(dispatch, movieId);
     }, [])
     
     console.log('Movie Detail Function Component rendering!');

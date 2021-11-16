@@ -2,29 +2,25 @@
 import Redux from 'redux';
 import { combineReducers } from "redux";
 
-const initialNumbersState = {
-    numbers: []
-}
+const initialNumbersState = []
 
 const numberReducer = (state = initialNumbersState, action) => {
     switch (action.type) {
         case 'NUMBER-ADD':
-            const newNumbers = [...state.numbers, action.value];            
-            return { numbers: newNumbers }
+            const newNumbers = [...state, action.value];            
+            return newNumbers;
         default:
             return state;
     }
 }
 
-const initialCharactersState = {
-    characters: []
-}
+const initialCharactersState = []
 
 const characterReducer = (state = initialCharactersState, action) => {
     switch (action.type) {
         case 'CHARACTER-ADD':
-            const newCharacters = [...state.characters, action.value];            
-            return { characters: newCharacters }
+            const newCharacters = [...state, action.value];            
+            return newCharacters;
         default:
             return state;
     }

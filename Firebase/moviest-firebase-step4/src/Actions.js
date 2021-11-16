@@ -1,4 +1,7 @@
-import firebase from 'firebase/app';
+import { getFirestore } from "firebase/firestore"
+import { collection, getDocs, getDoc, doc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+
 
 export const FETCH_MOVIES = "FETCH_MOVIES";
 export const FETCH_MOVIE_DETAIL = "FETCH_MOVIE_DETAIL";
@@ -23,20 +26,18 @@ function fetchMovieDetail(movieId, movie) {
 export const requestMovies = (dispatch) => {
     console.log('request movies');
 
-    // TODO : 요청 완료 전 중복 요청을 막기 위한 장치 필요 - FETCH_MOVIES_STARTED 필요
-    firebase.firestore().collection('movies').get()
-    .then( snapshot => {
+    const db = getFirestore();
+    // 비동기 동작인 경우 - 바로 데이터 확인이 안된다. promise로 비동기 동작과 action 관계 명확히 하기
+    getDocs(collection(db, "movies"))
+    .then( (snapshot) => {
         let items = snapshot.docs.map( item => {
             return {...item.data(), id: item.id};
         } );
-        console.log('movies list fetched :', items);
-        
         // 비동기 동작 완료 후 액션을 이용해서 스토어에 반영. 컴포넌트는 변경된 데이터 반영
-        dispatch( fetchMovies(items) );    
-    })
-    .catch ( error => {
-        // TODO: 에러 상황 처리
-        console.error('Error :', error);
+        dispatch( fetchMovies(items) );  
+    }).catch((err) => {
+        // TODO : 에러 상황에 대한 액션 실행
+        console.error(err);
     });
 }
 
@@ -44,18 +45,15 @@ export const requestMovies = (dispatch) => {
 export const requestMovieDetail = (dispatch, movieId) => {
     console.log('request movie detail:', movieId);
 
-    // TODO : 요청 완료 전 중복 요청을 막기 위한 장치 필요 - FETCH_MOVIE_DETAIL_STARTED 필요
-    firebase.firestore().collection('movies').doc(movieId).get()
-    .then( snapshot => {
-        let item = snapshot.data();
-        console.log('fetched movie detail:', item);
+    const db = getFirestore();
 
-        // 비동기 동작 완료 후 액션을 이용해서 스토어에 반영. 컴포넌트는 변경된 데이터 반영
-        dispatch( fetchMovieDetail(movieId, item) );
-    })
-    .catch ( error => {
-        // TODO: 에러 상황 처리
-        console.error('Error :', error);
+    const docRef = doc(db, "movies", movieId);
+    getDoc(docRef)
+    .then( movieDoc => {
+        dispatch( fetchMovieDetail(movieDoc.id, movieDoc.data()));         
+    }).catch(err => {
+        // TODO : 에러 상황에 대한 액션 실행
+        console.error(err);
     });    
 } 
 
@@ -64,5 +62,5 @@ export const authChanged = (dispatch, user) => {
 }
 
 export const logout = () => {
-    firebase.auth().signOut();
+    getAuth().signOut();
 }

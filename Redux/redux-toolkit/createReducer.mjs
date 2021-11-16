@@ -3,9 +3,7 @@
 import pkg from '@reduxjs/toolkit';
 const { configureStore, createReducer } = pkg;
 
-const initialNumbersState = {
-    numbers: []
-}
+const initialNumbersState = [];
 
 // const numberReducer = (state = initialNumbersState, action) => {
 //     switch (action.type) {
@@ -19,13 +17,11 @@ const initialNumbersState = {
 
 const numberReducer = createReducer(initialNumbersState, builder => {
     builder.addCase('NUMBER-ADD', (state, action) => {
-        state.numbers.push(action.value);
+        state.push(action.value);
     })
 });
 
-const initialCharactersState = {
-    characters: []
-}
+const initialCharactersState = [];
 
 // const characterReducer = (state = initialCharactersState, action) => {
 //     switch (action.type) {
@@ -39,7 +35,7 @@ const initialCharactersState = {
 
 const characterReducer = createReducer(initialCharactersState, builder => {
     builder.addCase('CHARACTER-ADD', (state, action) => {
-        state.characters.push(action.value);
+        state.push(action.value);
     })
 })
 

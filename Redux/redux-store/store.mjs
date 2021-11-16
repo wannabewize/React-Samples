@@ -1,6 +1,3 @@
-/**
- * package.json에 "type":"module" 추가할 것
- */
 import Redux from 'redux';
 
 const initialState = {

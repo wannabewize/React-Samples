@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "name": "CGV 홍대",
+            "location": { "latitude": 37.56609059711467, "longitude": 126.92345999407166 }
+        },
+        {
+            "name": "CGV 용산 아이파크몰",
+            "location": {"latitude": 37.53335302601555, "longitude": 126.9651625979179}
+        },
+        {
+            "name": "CGV 왕십리",
+            "location": {"latitude": 37.56451965542587, "longitude": 127.03811867981607}
+        },
+        {
+            "name": "CGV 상봉",
+            "location": {"latitude": 37.60084158185148, "longitude": 127.09202034897451}
+        },
+        {
+            "name": "CGV 상봉",
+            "location": {"latitude": 37.614168778933, "longitude": 127.03073724104597}
+        }
+    ]
+}
